@@ -1,0 +1,19 @@
+   LDFLAGS        += -T linkerscript.ld 
+   LN_TEMPLATE    ?= linkerscript.ld
+# 
+
+
+
+
+
+
+
+
+
+# #################################################################
+# ## FROM $(BMPTK)/esp/esp-idf/components/esp32/esp32.rom.ld 	###
+# #################################################################
+
+_data_start_rom 	= 0x4000d4f8
+_data_end_rom 		= 0x4000d5c8
+_start 				= 0x40000704

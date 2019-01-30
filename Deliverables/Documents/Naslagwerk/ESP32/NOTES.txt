@@ -1,0 +1,13 @@
+
+
+
+Espressif SDK, Demos, Apps en Tools:
+	https://www.espressif.com/en/support/download/overview
+
+
+
+Espressif SPIFFS Filesystem tutorial:
+	https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/storage/spiffs.html
+
+
+

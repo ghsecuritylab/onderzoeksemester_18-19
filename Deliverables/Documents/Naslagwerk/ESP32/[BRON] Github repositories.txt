@@ -1,0 +1,24 @@
+In dit bestand staan Github links die mogelijk nuttig zijn voor de realisatie van het onderzoek.
+
+
+Arduino core for ESP32 WiFi chip
+--------------------------------
+De onderstaande link is een github library waarmee de ESP32 als Arduino gebruikt kan worden.
+https://github.com/espressif/arduino-esp32
+
+
+
+Arduino-ESP32
+-------------
+https://github.com/espressif/arduino-esp32/blob/master/doc/windows.md
+
+
+Driver voor SSD1306
+-------------------
+https://github.com/squix78/esp8266-oled-ssd1306
+
+
+
+
+
+

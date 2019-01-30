@@ -1,0 +1,34 @@
+In dit document staat een lijst van opdrachten en project waarbij de Arduino Due gebruikt wordt.
+De lijst is opgedeeld in de verschillende jaren van HBO-ICT
+
+
+
+Jaar 1
+-------
+	- Inter Disiplinair Project
+	- TICT-V1OOPC-15
+		+ Week 4
+		+ Week 5
+		+ Week 6
+	- IPASS
+
+Jaar 2
+-------
+	- V2CPSE1
+	- Themaopdracht Devices
+	- Meten Regelen & besturen
+		+ Project
+	- R2D2
+	
+
+Jaar 3
+-------
+Licht aan de minor die gekozen wordt.
+
+
+
+Jaar 4
+-------
+Idem als Jaar 3
+
+

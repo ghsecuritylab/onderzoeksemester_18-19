@@ -1,0 +1,18 @@
+
+# settings for esp32 projects
+TARGET            ?= esp32
+SERIAL_PORT       ?= COM5
+CONSOLE_BAUDRATE  ?= 921600
+STACK_SIZE        ?= 81920
+HEAP              ?= BMPTK
+
+# add the rtos
+RTOS              ?= c:/ti-software/rtos
+include           $(RTOS)/makefile.inc
+
+# defer to the Makefile.link
+include           $(RELATIVE)/Makefile.link
+
+IDF_PATH := /c/ti-software/bmptk/drivers/esp/esp-idf
+
+include $(IDF_PATH)/make/project.mk

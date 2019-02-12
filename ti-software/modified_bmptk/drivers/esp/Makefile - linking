@@ -1,0 +1,121 @@
+
+.PHONY: all .EXPORT_ALL_VARIABLES
+
+DRIVE          := C
+
+
+TT  := 
+
+export BMPTK := C:/ti-software/bmptk
+IDF_PATH     := C:/ti-software/bmptk/drivers/esp/esp-idf
+CURRENT_DIR := $(abspath $(dir $(firstword $(MAKEFILE_LIST))))
+$(info $$ CURRENT_DIR = $(CURRENT_DIR))
+
+
+CC := C:/ti-software/bmptk/targets/esp/esp-wroom-32/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ 
+
+CFLAGS     :=
+CFLAGS += -Wall 
+CFLAGS += -Werror 
+CFLAGS += -Wno-maybe-uninitialized 
+CFLAGS += -Wno-unused-local-typedefs
+CFLAGS += -Wno-unused-but-set-variable
+CFLAGS += -Wno-unused-local-typedefs 
+CFLAGS += -Wno-unused-function 
+CFLAGS += -Wno-attributes
+CFLAGS += -Os
+CFLAGS += -fdata-sections 
+CFLAGS += -ffunction-sections 
+
+
+LIBS :=
+LIBS += -llibcore.a 
+LIBS += -llibrtc.a 
+LIBS += -llibnet80211.a 
+LIBS += -llibpp.a 
+LIBS += -llibwpa.a 
+LIBS += -llibsmartconfig.a 
+LIBS += -llibcoexist.a
+LIBS += -llibwps.a
+LIBS += -llibwpa2.a
+LIBS += -llibespnow.a
+LIBS += -llibphy.a
+LIBS += -llibmesh.a
+LIBS += -LC:/ti-software/bmptk/targets/esp/esp32/lib/ 
+
+
+SHIZZLE += -DHWCPP_FAKE_OSTREAM
+SHIZZLE += -DDONT_USE_CMSIS_INIT
+SHIZZLE += -DBMPTK_INCLUDE_CHIP=xtensa-versions.h
+SHIZZLE += -DBMPTK_TARGET=esp_devkit_v1
+SHIZZLE += -DBMPTK_TARGET_esp_devkit_v1
+SHIZZLE += -DHWCPP_TARGET_esp_devkit_v1
+SHIZZLE += -DBMPTK_CHIP=esp_devkit_v1
+SHIZZLE += -DBMPTK_CHIP_esp_devkit_v1
+SHIZZLE += -DBMPTK_XTAL=
+SHIZZLE += -DBMPTK_BAUDRATE=115200
+SHIZZLE += -DBMPTK_VERSION=V04_00_work_in_progress_2017_01_23
+SHIZZLE += -DBMPTK_EMBEDDED
+ 
+
+
+MORE_FLAGS :=
+MORE_FLAGS += -lgcc
+MORE_FLAGS += -Wl,-Map,main.map
+MORE_FLAGS += -Wl,--gc-sections
+MORE_FLAGS += -Wl,-fatal-warnings
+
+OBJECTS += -o main.elf main.o bmptk_heap_none.o bmptk_fixed_size_stack.o
+
+
+MORE_FLAGS2 :=
+
+MORE_FLAGS2 += -nostdlib
+MORE_FLAGS2 += -u call_user_start_cpu0 
+MORE_FLAGS2 += -Wl,--gc-sections
+MORE_FLAGS2 += -Wl,-static
+MORE_FLAGS2 += -Wl,--start-group 
+MORE_FLAGS2 += -lgcc
+MORE_FLAGS2 += -lstdc++
+MORE_FLAGS2 += -lgcov
+MORE_FLAGS2 += -Wl,--end-group
+MORE_FLAGS2 += -Wl,-EL
+MORE_FLAGS2 += -nostdlib 
+MORE_FLAGS2 += -u call_user_start_cpu0     
+MORE_FLAGS2 += -Wl,--gc-sections   
+MORE_FLAGS2 += -Wl,-static   
+MORE_FLAGS2 += -Wl,--start-group     
+MORE_FLAGS2 += -lgcc 
+MORE_FLAGS2 += -lstdc++ 
+MORE_FLAGS2 += -lgcov 
+MORE_FLAGS2 += -Wl,-EL
+MORE_FLAGS2 += -nostartfiles
+MORE_FLAGS2 += -lm
+MORE_FLAGS2 += -lc 
+MORE_FLAGS2 += -D BOOTLOADER_BUILD=1
+
+
+LDFLAGS :=
+LDFLAGS += -T C:/ti-software/bmptk/targets/esp/bootloader/subproject/main/esp32.bootloader.ld
+LDFLAGS += -T C:/ti-software/bmptk/targets/esp/esp32/ld/esp32.peripherals.ld
+LDFLAGS += -T C:/ti-software/bmptk/targets/esp/esp32/ld/esp32.rom.spiram_incompatible_fns.ld
+LDFLAGS += -T C:/ti-software/bmptk/targets/esp/esp32/ld/esp32.rom.ld 
+LDFLAGS += -T C:/ti-software/bmptk/targets/esp/bootloader/subproject/main/esp32.bootloader.rom.ld
+LDFLAGS += -LC:/ti-software/bmptk/targets/esp/esp32/lib
+LDFLAGS += -L C:/ti-software/bmptk/targets/esp/esp32/ld
+LDFLAGS += -LC:/ti-software/bmptk/drivers/esp/esp-idf/components/pthread
+LDFLAGS += -LC:/ti-software/bmptk/drivers/esp/esp-idf/components/pthread/include
+LDFLAGS += -LC:/ti-software/bmptk/targets/esp/esp32/lib/
+
+
+
+
+
+
+all: 
+	$(CC) $(CFLAGS) $(LIBS) $(SHIZZLE) $(MORE_FLAGS) $(OBJECTS) $(MORE_FLAGS2) $(LDFLAGS)
+
+	
+
+
+
